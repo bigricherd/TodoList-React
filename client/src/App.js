@@ -10,21 +10,22 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 function App() {
-  useEffect(() => {
-    getUser();
-  }, []);
+  // useEffect(() => {
+  //   getUser();
+  // }, []);
 
   const [user, setUser] = useState(null);
 
-  const getUser = async () => {
-    const data = await fetch('/user');
-    if (data) {
-      console.log(`data: ${data}`);
-      const user = await data.json();
-      console.log(user);
-      setUser(user);
-    }
-  }
+  // const getUser = async () => {
+  //   const data = await fetch('/user');
+  //   if (data) {
+  //     console.log(`data: ${data}`);
+  //     const user = await data.json();
+  //     console.log(user);
+  //     setUser(user);
+  //   }
+  // }
+  setUser(null);
   return (
     <Router>
       <div className="App">
