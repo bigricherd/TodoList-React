@@ -18,9 +18,12 @@ function App() {
 
   const getUser = async () => {
     const data = await fetch('/user');
-    const user = await data.json();
-    console.log(user);
-    setUser(user);
+    if (data) {
+      console.log(`data: ${data}`);
+      const user = await data.json();
+      console.log(user);
+      setUser(user);
+    }
   }
   return (
     <Router>

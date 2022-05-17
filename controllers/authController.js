@@ -24,13 +24,13 @@ module.exports.getUser = (req, res) => {
     if (req.user) {
         return res.end(JSON.stringify(req.user));
     }
-    return res.json(null);
+    console.log('no user logged in');
+    return res.end(JSON.stringify(null));
 }
 
 module.exports.logout = (req, res) => {
     let redirect = '/';
     if (req.user) {
-        const username = req.user.username;
         req.logout();
         return res.redirect(redirect);
     }

@@ -19,7 +19,7 @@ const taskRoutes = require('./routes/taskRoutes');
 const authRoutes = require('./routes/authRoutes');
 const errorController = require('./controllers/errorController');
 
-const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/todoListAuth2';
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/todoListAuth3';
 
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
@@ -87,6 +87,10 @@ app.use((req, res, next) => {
     return next();
 })
 
+app.get('/', (req, res) => {
+    res.redirect('/');
+})
+
 app.use('/', taskRoutes);
 app.use('/', authRoutes);
 app.use(errorController);
@@ -108,9 +112,6 @@ if (process.env.NODE_ENV === "production") {
     });
 }
 
-app.get('/', (req, res) => {
-    res.redirect('/');
-})
 
 const port = process.env.PORT || 4000;
 app.listen(port, () => {

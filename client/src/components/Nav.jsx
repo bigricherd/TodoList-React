@@ -1,32 +1,18 @@
 import { Link } from 'react-router-dom';
-import useForm from '../hooks/useForm';
-import Error from './Error';
 
 function Nav(props) {
-    const { handleSubmit, error } = useForm({
-        initialValues: {
-            email: '',
-            username: '',
-            password: '',
-        },
-        slug: 'logout'
-    });
-
     let navLinkClasses = 'nav-item nav-link';
 
     let navbarNav = <div className="navbar-nav ms-auto">
-        {/* <Link to='/' className={navLinkClasses}>Todos</Link>
-        <Link to='/completed' className={navLinkClasses}>Completed</Link> */}
         <Link to='/register' className={navLinkClasses}>Register</Link>
         <Link to='/login' className={navLinkClasses}>Login</Link>
-        {error && <Error error={error.messages} />}
     </div>;
 
     if (props.user) {
         navbarNav = <div className="navbar-nav ms-auto">
             <Link to='/' className={navLinkClasses}>Pending</Link>
             <Link to='/completedTasks' className={navLinkClasses}>Completed</Link>
-            <form action='#' onSubmit={handleSubmit} className={navLinkClasses} method='POST'><button className="border-0 bg-light">Logout | <span className="text-success">{props.user.username}</span></button></form>
+            <form action='/logout' className={navLinkClasses} method='POST'><button className="border-0 bg-light">Logout | <span className="text-success">{props.user.username}</span></button></form>
         </div>
     }
 
