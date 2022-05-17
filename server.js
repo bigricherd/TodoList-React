@@ -87,10 +87,6 @@ app.use((req, res, next) => {
     return next();
 })
 
-app.get('/', (req, res) => {
-    res.json(req.user);
-})
-
 app.use('/', taskRoutes);
 app.use('/', authRoutes);
 app.use(errorController);
