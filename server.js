@@ -87,9 +87,9 @@ app.use((req, res, next) => {
     return next();
 })
 
-app.get('/', (req, res) => {
-    res.redirect('/');
-})
+// app.get('/', (req, res) => {
+//     res.redirect('/');
+// })
 
 app.use('/', taskRoutes);
 app.use('/', authRoutes);
