@@ -88,7 +88,7 @@ app.use((req, res, next) => {
 })
 
 app.get('/', (req, res) => {
-    res.redirect('/completedTasks');
+    res.json(req.user);
 })
 
 app.use('/', taskRoutes);
