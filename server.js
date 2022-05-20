@@ -40,8 +40,19 @@ app.use(mongoSanitize({
     replaceWith: '_'
 }));
 
+const homeUrl = process.env.HOMEPAGE_URL || 'http://localhost:3000';
+const whitelist = ['http://localhost:3000', 'http://localhost:4000', homeUrl];
 const corsConfig = {
-    origin: 'http://localhost:3000',
+    origin: function (origin, callback) {
+        console.log('**Origin of request: ' + origin);
+        if (whitelist.indexOf(origin) !== -1 || !origin) {
+            console.log('Origin acceptable');
+            callback(null, true);
+        } else {
+            console.log('Origin rejected');
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
     credentials: true
 }
 app.use(cors(corsConfig));
@@ -87,8 +98,8 @@ app.use((req, res, next) => {
     return next();
 })
 
-app.use('/', taskRoutes);
-app.use('/', authRoutes);
+app.use('/tasks', taskRoutes);
+app.use('/users', authRoutes);
 app.use(errorController);
 app.use(cookieParser); // this must go after routes
 
@@ -106,6 +117,8 @@ if (process.env.NODE_ENV === "production") {
     app.get("/*", (req, res) => {
         res.sendFile(path.join(__dirname, "/client/build/index.html"));
     });
+    console.log(corsConfig.origin);
+    console.log(path.join(__dirname, "/client/build/index.html"));
 }
 
 

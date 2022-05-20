@@ -9,7 +9,7 @@ function CompletedTasks() {
     const [items, setItems] = useState([]);
 
     const fetchItems = async () => {
-        const data = await fetch('/completedTasks');
+        const data = await fetch('/tasks/completed');
         const items = await data.json();
         console.log(items);
         setItems(items);

@@ -6,7 +6,6 @@ module.exports = (err, req, res, next) => {
         if (err.name === 'MissingUsernameError') return err = handleMissingUsernameError(err, res);
         if (err.name === 'MissingPasswordError') return err = handleMissingPasswordError(err, res);
         if (err.name === 'ValidationError') return err = handleValidationError(err, res);
-        // if (err.code && err.code == 11000) return err = handleDuplicateKeyError(err, res);
         return next(err);
     }
     catch (err) {

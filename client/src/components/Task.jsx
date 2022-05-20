@@ -24,9 +24,9 @@ function Task(props) {
             </form>
         </div>;
 
-    const completeLink = `/completeTask/${props.id}`;
+    const completeLink = `/tasks/complete/${props.id}`;
     const deleteLink = `/tasks/${props.id}?_method=DELETE`;
-    const undoCompleteLink = `undoComplete/${props.id}`
+    const undoCompleteLink = `/tasks/undoComplete/${props.id}`
 
     let toggleCompleteButton = <PostButton action={completeLink} buttonClasses={"btn-success"} text={"Complete"} />;
     let removeButton = <PostButton action={deleteLink} buttonClasses={"btn-danger"} text={"Remove"} />

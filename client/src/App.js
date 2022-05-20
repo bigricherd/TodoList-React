@@ -5,7 +5,6 @@ import HomePage from './components/HomePage';
 import CompletedPage from './components/CompletedPage';
 import Register from './components/Register';
 import Login from './components/Login';
-//import Logout from './components/Logout';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
@@ -17,9 +16,9 @@ function App() {
   const [user, setUser] = useState(null);
 
   const getUser = async () => {
-    const data = await fetch('/user');
+    const data = await fetch('/users/getUser');
     if (data) {
-      console.log(`data: ${data}`);
+      //console.log(`data: ${data}`);
       const user = await data.json();
       console.log(user);
       setUser(user);

@@ -8,24 +8,16 @@ module.exports.register = async (req, res) => {
         if (err) return next(err);
         let redir = { redirect: "/" };
         return res.json(redir);
-        // return res.end('successful login, now redirect to home');
     })
-    // return res.redirect('/');
-}
-
-module.exports.login = (req, res) => {
-    // const redirectUrl = req.session.returnTo || '/';
-    // delete req.session.returnTo;
-    return res.redirect('/');
 }
 
 module.exports.getUser = (req, res) => {
-    //console.log(req.user);
+    console.log(req.user);
     if (req.user) {
         return res.end(JSON.stringify(req.user));
     }
     console.log('no user logged in');
-    return res.end(JSON.stringify(null));
+    return res.json(null);
 }
 
 module.exports.logout = (req, res) => {

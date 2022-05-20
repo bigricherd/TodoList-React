@@ -8,12 +8,12 @@ function Login() {
             username: '',
             password: '',
         },
-        slug: 'login',
+        slug: 'users/login',
     });
     return (
         <div className="card-shadow">
             <div className="card-body d-flex flex-column align-items-center">
-                <h5 className="card-header display-4 fw-bold">Login</h5>
+                <h5 className="card-title display-4 fw-bold my-2">Login</h5>
                 <form action="#" method="POST" onSubmit={handleSubmit}>
                     <div className="mb-3 text-start">
                         <label htmlFor="username" name="username" className='form-label'>Username</label>
@@ -24,8 +24,8 @@ function Login() {
                         <input type="password" className="form-control" placeholder="Password" id="password" name="password" value={values.password} onChange={handleChange} onKeyDown={handleKeyDown} required />
                     </div>
                     <button className="btn btn-primary mb-3">Login</button>
-                    {error && <Error error={error.messages} />}
                 </form>
+                {error && <Error error={error.messages} />}
             </div>
         </div>
     )

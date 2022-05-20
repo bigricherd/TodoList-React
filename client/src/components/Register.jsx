@@ -9,14 +9,14 @@ function Register() {
             username: '',
             password: '',
         },
-        slug: 'register'
+        slug: 'users/register'
     });
 
     return (
         <div className="card-shadow">
             <div className="card-body d-flex flex-column align-items-center">
-                <h5 className="card-header display-4 fw-bold">Register</h5>
-                <form action="#" method="POST" onSubmit={handleSubmit} className="card-body d-flex flex-column align-items-center">
+                <h5 className="card-title display-4 fw-bold my-2">Register</h5>
+                <form action="#" method="POST" onSubmit={handleSubmit}>
                     <div className="mb-3 text-start">
                         <label htmlFor="username" name="username" className='form-label'>Username</label>
                         <input type="text" className="form-control" placeholder="Username" id="username" name="username" value={values.username} onChange={handleChange} onKeyDown={handleKeyDown} required />
@@ -26,8 +26,8 @@ function Register() {
                         <input type="password" className="form-control" placeholder="Password" id="password" name="password" value={values.password} onChange={handleChange} onKeyDown={handleKeyDown} required />
                     </div>
                     <button className="btn btn-primary mb-3">Register</button>
-                    {error && <Error error={error.messages} />}
                 </form>
+                {error && <Error error={error.messages} />}
             </div>
         </div>
     )

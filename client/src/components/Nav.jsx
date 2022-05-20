@@ -12,7 +12,7 @@ function Nav(props) {
         navbarNav = <div className="navbar-nav ms-auto">
             <Link to='/' className={navLinkClasses}>Pending</Link>
             <Link to='/completedTasks' className={navLinkClasses}>Completed</Link>
-            <form action='/logout' className={navLinkClasses} method='POST'><button className="border-0 bg-light">Logout | <span className="text-success">{props.user.username}</span></button></form>
+            <form action='/users/logout' className={navLinkClasses} method='POST'><button className="border-0 bg-light">Logout | <span className="text-success">{props.user.username}</span></button></form>
         </div>
     }
 

@@ -26,16 +26,15 @@ export default function useForm({ initialValues, slug, method }) {
     };
     //send data to database
     const submitData = async (formValues) => {
-        const url = 'http://localhost:4000';
+        const url = 'https://desolate-everglades-14015.herokuapp.com';
         const dataObject = formValues.values;
-        const { username, email, password } = dataObject;
+        const { username, password } = dataObject;
         try {
             await axios({
                 method: 'POST',
                 url: `${url}/${slug}`,
                 data: {
                     username: username,
-                    email: email,
                     password: password,
                 },
                 headers: new Headers({ 'Content-Type': 'application/json' }),
