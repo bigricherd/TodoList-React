@@ -9,7 +9,7 @@ function Register() {
             username: '',
             password: '',
         },
-        slug: 'users/register'
+        slug: 'api/users/register'
     });
 
     return (

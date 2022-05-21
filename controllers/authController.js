@@ -1,6 +1,7 @@
 const User = require('../models/userModel');
 
 module.exports.register = async (req, res) => {
+    console.log('register request sent');
     const { username, password } = req.body;
     const user = new User({ username });
     const registeredUser = await User.register(user, password);
@@ -12,15 +13,17 @@ module.exports.register = async (req, res) => {
 }
 
 module.exports.getUser = (req, res) => {
-    console.log(req.user);
+    console.log(req.user); // this doesn't even run when client is in prod
+    console.log('getUser request sent');
     if (req.user) {
-        return res.end(JSON.stringify(req.user));
+        return res.json(req.user);
     }
     console.log('no user logged in');
     return res.json(null);
 }
 
 module.exports.logout = (req, res) => {
+    console.log('logout request sent');
     let redirect = '/';
     if (req.user) {
         req.logout();

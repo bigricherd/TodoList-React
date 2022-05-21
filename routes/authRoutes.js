@@ -7,6 +7,7 @@ const catchAsync = require('../utils/catchAsync');
 router.post('/register', catchAsync(auth.register));
 
 router.post('/login', function (req, res, next) {
+    console.log('login request sent');
     passport.authenticate('local', function (err, user, info) {
         if (err) {
             console.log(err);
@@ -14,6 +15,7 @@ router.post('/login', function (req, res, next) {
         }
         // Generate a JSON response reflecting authentication status
         if (!user) {
+            console.log('didnt work');
             return res.status(403).send({ messages: 'Invalid credentials, please try again.' });
         }
         req.login(user, loginErr => {

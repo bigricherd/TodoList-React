@@ -26,7 +26,7 @@ export default function useForm({ initialValues, slug, method }) {
     };
     //send data to database
     const submitData = async (formValues) => {
-        const url = 'https://desolate-everglades-14015.herokuapp.com';
+        const url = 'http://localhost:4000';
         const dataObject = formValues.values;
         const { username, password } = dataObject;
         try {
@@ -37,7 +37,7 @@ export default function useForm({ initialValues, slug, method }) {
                     username: username,
                     password: password,
                 },
-                headers: new Headers({ 'Content-Type': 'application/json' }),
+                headers: new Headers({ 'Content-Type': 'application/json', 'Accept': 'application/json' }),
                 withCredentials: true
 
             }).then(res => {

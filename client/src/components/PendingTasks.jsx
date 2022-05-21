@@ -9,7 +9,7 @@ function PendingTasks(props) {
     const [items, setItems] = useState([]);
 
     const fetchItems = async () => {
-        const data = await fetch('/tasks/pending');
+        const data = await fetch('/api/tasks/pending');
         const items = await data.json();
         //console.log(items);
         setItems(items);

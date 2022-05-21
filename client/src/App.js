@@ -16,13 +16,10 @@ function App() {
   const [user, setUser] = useState(null);
 
   const getUser = async () => {
-    const data = await fetch('/users/getUser');
-    if (data) {
-      //console.log(`data: ${data}`);
-      const user = await data.json();
-      console.log(user);
-      setUser(user);
-    }
+    const data = await fetch('https://desolate-everglades-14015.herokuapp.com/api/users/getUser');
+    const user = await data.json();
+    console.log(user);
+    setUser(user);
   }
 
   return (

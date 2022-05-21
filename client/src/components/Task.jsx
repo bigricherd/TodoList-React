@@ -3,7 +3,7 @@ import PostButton from './PostButton';
 
 function Task(props) {
     const [editing, setEditing] = useState(false);
-    const editLink = `/tasks/${props.id}?_method=PATCH`;
+    const editLink = `/api/tasks/${props.id}?_method=PATCH`;
 
     let editButtonText;
     editing ? editButtonText = "Cancel Edit" : editButtonText = "Edit";
@@ -24,9 +24,9 @@ function Task(props) {
             </form>
         </div>;
 
-    const completeLink = `/tasks/complete/${props.id}`;
-    const deleteLink = `/tasks/${props.id}?_method=DELETE`;
-    const undoCompleteLink = `/tasks/undoComplete/${props.id}`
+    const completeLink = `/api/tasks/complete/${props.id}`;
+    const deleteLink = `/api/tasks/${props.id}?_method=DELETE`;
+    const undoCompleteLink = `/api/tasks/undoComplete/${props.id}`
 
     let toggleCompleteButton = <PostButton action={completeLink} buttonClasses={"btn-success"} text={"Complete"} />;
     let removeButton = <PostButton action={deleteLink} buttonClasses={"btn-danger"} text={"Remove"} />

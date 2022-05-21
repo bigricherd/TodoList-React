@@ -1,6 +1,4 @@
-if (process.env.NODE_ENV !== 'production') {
-    require('dotenv').config();
-}
+require('dotenv').config();
 
 const express = require('express');
 const mongoose = require('mongoose');
@@ -41,7 +39,7 @@ app.use(mongoSanitize({
 }));
 
 const homeUrl = process.env.HOMEPAGE_URL || 'http://localhost:3000';
-const whitelist = ['http://localhost:3000', 'http://localhost:4000', homeUrl];
+const whitelist = ['http://localhost:3000', 'http://192.168.0.101:3000', 'http://localhost:4000', homeUrl];
 const corsConfig = {
     origin: function (origin, callback) {
         console.log('**Origin of request: ' + origin);
@@ -98,8 +96,8 @@ app.use((req, res, next) => {
     return next();
 })
 
-app.use('/tasks', taskRoutes);
-app.use('/users', authRoutes);
+app.use('/api/tasks', taskRoutes);
+app.use('/api/users', authRoutes);
 app.use(errorController);
 app.use(cookieParser); // this must go after routes
 
@@ -107,14 +105,14 @@ app.use((err, req, res, next) => {
     if (!err.statusCode) err.statusCode = 500;
     if (!err.message) err.message = 'Something went wrong';
     console.log('you hit the catch-all error middleware');
-    console.log(err.statsuCode, err.message)
+    console.log(err.statusCode, err.message)
     return res.status(err.statusCode).send({ messages: err.message });
 })
 
 if (process.env.NODE_ENV === "production") {
     app.use(express.static(path.join(__dirname, "/client/build")));
 
-    app.get("/*", (req, res) => {
+    app.get("*", (req, res) => {
         res.sendFile(path.join(__dirname, "/client/build/index.html"));
     });
     console.log(corsConfig.origin);

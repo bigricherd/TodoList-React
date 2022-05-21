@@ -8,7 +8,7 @@ function Login() {
             username: '',
             password: '',
         },
-        slug: 'users/login',
+        slug: 'api/users/login',
     });
     return (
         <div className="card-shadow">
