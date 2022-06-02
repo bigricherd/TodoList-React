@@ -27,7 +27,7 @@ function App() {
   //   }
   // }
 
-  const baseUrl = process.env.REACT_APP_HOME_URL || 'http://localhost:4000';
+  const baseUrl = process.env.REACT_APP_HOME_URL || 'http://localhost:5000';
 
   const [message, setMessage] = useState(null);
   const [user, setUser] = useState(null);
