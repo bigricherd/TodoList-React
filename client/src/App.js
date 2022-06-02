@@ -34,6 +34,7 @@ function App() {
   const [user, setUser] = useState(null);
   const [isFetching, setIsFetching] = useState(false);
   const [url, setUrl] = useState(`${baseUrl}/api/users/getUser`);
+  console.log(url);
 
   const fetchData = useCallback(async () => {
 
