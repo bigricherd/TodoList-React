@@ -15,9 +15,6 @@ function App() {
 
   // const [user, setUser] = useState(null);
 
-  // const homeUrl = process.env.HOMEPAGE_URL || 'http://localhost:4000';
-  // const baseUrl = process.env.NODE_ENV === 'production' ? homeUrl : '';
-
   // const getUser = async () => {
   //   fetch(`${baseUrl}/api/users/getUser`).then(res => {
   //     console.log(res);
@@ -30,10 +27,13 @@ function App() {
   //   }
   // }
 
+  const homeUrl = process.env.HOMEPAGE_URL || 'http://localhost:4000';
+  const baseUrl = process.env.NODE_ENV === 'production' ? homeUrl : '';
+
   const [message, setMessage] = useState(null);
   const [user, setUser] = useState(null);
   const [isFetching, setIsFetching] = useState(false);
-  const [url, setUrl] = useState('http://localhost:4000/api/users/getUser');
+  const [url, setUrl] = useState(`${baseUrl}/api/users/getUser`);
 
   const fetchData = useCallback(async () => {
 
