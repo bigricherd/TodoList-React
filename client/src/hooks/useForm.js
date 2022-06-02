@@ -29,13 +29,12 @@ export default function useForm({ initialValues, slug, method }) {
 
     //send data to database
     const submitData = async (formValues) => {
-        const url = `${baseUrl}/api/users/getUser`;
         const dataObject = formValues.values;
         const { username, password } = dataObject;
         try {
             await axios({
                 method: 'POST',
-                url: `${url}/${slug}`,
+                url: `${baseUrl}/${slug}`,
                 data: {
                     username: username,
                     password: password,
