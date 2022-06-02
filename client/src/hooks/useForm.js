@@ -24,9 +24,12 @@ export default function useForm({ initialValues, slug, method }) {
         event.preventDefault();
         submitData({ values });
     };
+
+    const baseUrl = process.env.REACT_APP_HOME_URL || 'http://localhost:4000';
+
     //send data to database
     const submitData = async (formValues) => {
-        const url = 'http://localhost:4000';
+        const url = `${baseUrl}/api/users/getUser`;
         const dataObject = formValues.values;
         const { username, password } = dataObject;
         try {
