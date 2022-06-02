@@ -27,8 +27,7 @@ function App() {
   //   }
   // }
 
-  const homeUrl = process.env.HOMEPAGE_URL || 'http://localhost:4000';
-  const baseUrl = process.env.NODE_ENV === 'production' ? homeUrl : '';
+  const baseUrl = process.env.HOMEPAGE_URL || 'http://localhost:4000';
 
   const [message, setMessage] = useState(null);
   const [user, setUser] = useState(null);
