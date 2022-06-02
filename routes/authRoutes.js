@@ -23,6 +23,9 @@ router.post('/login', function (req, res, next) {
                 console.log('loginErr');
                 return next(loginErr);
             }
+            console.log('from req.user', req.user); // shows the logged in user here, but subsequent getUser request (post-redirect) returns undefined -- WHY?
+            req.session.user = req.user; // this line works even on production, the issue is accessing it from another route
+            console.log('from req.session', req.session.user)
             let redir = { redirect: "/" };
             return res.json(redir);
         });

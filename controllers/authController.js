@@ -7,27 +7,36 @@ module.exports.register = async (req, res) => {
     const registeredUser = await User.register(user, password);
     req.login(registeredUser, err => {
         if (err) return next(err);
+        console.log('req.user', req.user);
+        req.session.user = req.user;
         let redir = { redirect: "/" };
         return res.json(redir);
     })
 }
 
 module.exports.getUser = (req, res) => {
-    console.log(req.user); // this doesn't even run when client is in prod
+    // console.log(req.session.user); // this doesn't even run when client is in prod
     console.log('getUser request sent');
-    if (req.user) {
-        return res.json(req.user);
+    const data = {
+        message: "No user logged in",
+        user: null
+    }
+    if (req.session.user) {
+        console.log('from getUser: ', req.session.user);
+        data.message = "Successfully fetched user data";
+        data.user = req.session.user || req.user;
+        return res.json(data);
     }
     console.log('no user logged in');
-    return res.json(null);
+    return res.json(data);
 }
 
 module.exports.logout = (req, res) => {
     console.log('logout request sent');
-    let redirect = '/';
     if (req.user) {
         req.logout();
-        return res.redirect(redirect);
+        req.session.user = req.user;
     }
-    return res.status(400).send({ redirect, messages: 'No user logged in' });
+    return res.redirect('/'); // simply redirects user to home page
+    // return res.status(400).send({ redirect, messages: 'No user logged in' });
 }

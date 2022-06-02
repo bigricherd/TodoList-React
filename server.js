@@ -1,4 +1,6 @@
-require('dotenv').config();
+if (process.env.NODE_ENV === 'production') {
+    require('dotenv').config();
+}
 
 const express = require('express');
 const mongoose = require('mongoose');
@@ -11,13 +13,14 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const mongoSanitize = require('express-mongo-sanitize');
 const MongoStore = require('connect-mongo');
+const uuid = require('uuid');
 
 const User = require('./models/userModel');
 const taskRoutes = require('./routes/taskRoutes');
 const authRoutes = require('./routes/authRoutes');
 const errorController = require('./controllers/errorController');
 
-const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/todoListAuth3';
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/todoListTest';
 
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
@@ -39,7 +42,7 @@ app.use(mongoSanitize({
 }));
 
 const homeUrl = process.env.HOMEPAGE_URL || 'http://localhost:3000';
-const whitelist = ['http://localhost:3000', 'http://192.168.0.101:3000', 'http://localhost:4000', homeUrl];
+const whitelist = ['http://localhost:3000', 'http://192.168.0.101:3000', 'http://localhost:4000', 'http://127.0.0.1:8080', homeUrl];
 const corsConfig = {
     origin: function (origin, callback) {
         console.log('**Origin of request: ' + origin);
@@ -70,18 +73,26 @@ store.on('error', function (e) {
 })
 
 const sessionConfig = {
-    store,
-    name: 'session',
+    id: function (req) {
+        return uuid(); // use UUIDs for session IDs
+    },
     secret,
     resave: false,
     saveUninitialized: true,
     cookie: {
-        httpOnly: true,
+        // httpOnly: true,
+        // secure: true,
+        // sameSite: "none",
         expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
         maxAge: 1000 * 60 * 60 * 24 * 7
     }
 }
 
+if (process.env.NODE_ENV === 'production') {
+    app.set('trust proxy', 1); // trust first proxy
+    sessionConfig.cookie.secure = true; // serve secure cookies
+    sessionConfig.store = store;
+}
 app.use(session(sessionConfig));
 
 app.use(passport.initialize()); // this must come before usersRoutes so that req.login can be called on register
@@ -99,7 +110,7 @@ app.use((req, res, next) => {
 app.use('/api/tasks', taskRoutes);
 app.use('/api/users', authRoutes);
 app.use(errorController);
-app.use(cookieParser); // this must go after routes
+// app.use(cookieParser); // this must go after routes
 
 app.use((err, req, res, next) => {
     if (!err.statusCode) err.statusCode = 500;
@@ -116,9 +127,9 @@ if (process.env.NODE_ENV === "production") {
         res.sendFile(path.join(__dirname, "/client/build/index.html"));
     });
     console.log(corsConfig.origin);
-    console.log(path.join(__dirname, "/client/build/index.html"));
+    console.log(sessionConfig.cookie);
+    console.log(sessionConfig.store);
 }
-
 
 const port = process.env.PORT || 4000;
 app.listen(port, () => {
