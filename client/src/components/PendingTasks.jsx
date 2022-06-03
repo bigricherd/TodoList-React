@@ -25,7 +25,6 @@ function PendingTasks(props) {
     let pendingTasks = null;
 
     if (items && items.length !== 0) {
-        heading = <p className="display-5 fw-bold text-light">Pending Tasks</p>;
         pendingTasks =
             items.map(item => (
                 <Task description={item.description} key={item._id} id={item._id} completed={item.completed} />
@@ -37,9 +36,9 @@ function PendingTasks(props) {
     }
 
     return (
-        <div className="col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-xxl-4 offset-xxl-4 col-10 offset-1">
+        <div>
             {isFetching
-                ? 'Fetching task data'
+                ? 'Fetching pending tasks'
                 : heading}
             {pendingTasks}
         </div>

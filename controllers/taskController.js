@@ -55,7 +55,7 @@ module.exports.completeTask = async (req, res) => {
     if (req.user) {
         const { id } = req.params;
         await Task.findByIdAndUpdate(id, { $set: { completed: true } });
-        res.redirect('/completedTasks');
+        res.redirect('/');
     } else {
         console.log('you must be logged in from completeTask');
         res.redirect('/');

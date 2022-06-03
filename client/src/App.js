@@ -2,11 +2,10 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Nav from './components/Nav';
 import HomePage from './components/HomePage';
-import CompletedPage from './components/CompletedPage';
 import Register from './components/Register';
 import Login from './components/Login';
 import NotFound from './components/NotFound';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useState, useEffect, useCallback } from 'react';
 
 
@@ -80,7 +79,6 @@ function App() {
           }
           <Routes>
             <Route exact path='/' element={<HomePage user={user} />} />
-            <Route exact path='/completedTasks' element={<CompletedPage user={user} />} />
             <Route exact path='/register' element={<Register />} />
             <Route exact path='/login' element={<Login />} />
             <Route path='*' element={<NotFound />} />

@@ -2,35 +2,44 @@ import React, { useState, useEffect } from 'react';
 import Task from './Task';
 
 function CompletedTasks() {
-    useEffect(() => {
-        fetchItems();
-    }, []);
-
     const [items, setItems] = useState([]);
+    const [isFetching, setIsFetching] = useState(false);
 
     const fetchItems = async () => {
         const data = await fetch('/api/tasks/completed');
-        const items = await data.json();
-        console.log(items);
-        setItems(items);
+        try {
+            const items = await data.json();
+            setIsFetching(false);
+            setItems(items);
+        } catch (e) {
+            setIsFetching(false);
+        }
     }
 
-    // let heading = <p className="pt-4">No completed tasks, get something done!</p>;
+    useEffect(() => {
+        setIsFetching(true);
+        fetchItems();
+    }, []);
+
+    let heading = null;
     let completedTasks = null;
+
     if (items && items.length !== 0) {
-        // heading = <p className="display-4 fw-bold">Completed Tasks</p>;
         completedTasks =
             items.map(item => (
                 <Task description={item.description} key={item._id} id={item._id} completed={item.completed} />
             ))
+    } else if (items && items.length === 0) {
+        heading = <p className="pt-4">No completed tasks, get something done!</p>;
+    } else {
+        heading = null;
     }
 
     return (
-        <div className="col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-xxl-4 offset-xxl-4 col-10 offset-1">
-            {items && items.length !== 0 ?
-                <p className="display-4 fw-bold">Completed Tasks</p>
-                :
-                <p className="pt-4">No completed tasks, get something done!</p>}
+        <div>
+            {isFetching
+                ? 'Fetching completed tasks'
+                : heading}
             {completedTasks}
         </div>
     )

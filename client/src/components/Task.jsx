@@ -38,7 +38,7 @@ function Task(props) {
 
     // If this task is completed, i.e., being shown on the Completed Tasks page, then make the "complete button" and undo complete button
     if (props.completed) {
-        toggleCompleteButton = <PostButton action={undoCompleteLink} buttonClasses={"btn-info"} text={"Move to pending tasks"} />
+        toggleCompleteButton = <PostButton action={undoCompleteLink} buttonClasses={"btn-info"} text={"Move to pending"} />
         editButton = null;
         editForm = null;
     }
