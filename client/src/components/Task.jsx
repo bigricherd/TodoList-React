@@ -13,6 +13,11 @@ function Task(props) {
             {editButtonText}
         </button>;
 
+    const handleSubmitEdit = (event) => {
+        event.preventDefault();
+        setEditing(false);
+    }
+
     let editForm =
         <div className="col-md-8 offset-md-2  col-10 offset-1">
             <form action={editLink} method="POST">
@@ -20,7 +25,7 @@ function Task(props) {
                     <label htmlFor="description" name="description" className='mb-2 fw-bold'>Edit task description</label>
                     <input type="text" className="form-control text-center" placeholder="new description" id="description" name="description" defaultValue={props.description} required />
                 </div>
-                <button className="btn btn-primary" onSubmit={() => setEditing(false)}>Save Changes</button>
+                <button className="btn btn-primary" onSubmit={handleSubmitEdit}>Save Changes</button>
             </form>
         </div>;
 

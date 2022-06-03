@@ -3,7 +3,7 @@ const Task = require('../models/taskModel');
 // TODO isLoggedIn middleware for all of these
 
 module.exports.showPendingTasks = async (req, res) => {
-    if (req.user) {
+    if (req.session.user) {
         const todos = await Task.find({ $and: [{ completed: false }, { author: req.user._id }] });
         // console.log(todos);
         return res.end(JSON.stringify(todos));
