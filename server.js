@@ -103,7 +103,7 @@ app.use((req, res, next) => {
 app.use('/api/tasks', taskRoutes);
 app.use('/api/users', authRoutes);
 app.use(errorController);
-app.use(cookieParser); // this must go after routes
+// app.use(cookieParser); // this must go after routes
 
 app.use((err, req, res, next) => {
     if (!err.statusCode) err.statusCode = 500;
