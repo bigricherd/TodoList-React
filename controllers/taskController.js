@@ -31,11 +31,10 @@ module.exports.newTask = async (req, res) => {
         const task = new Task({ description, completed: false, author: req.user._id });
         // console.log(task);
         await task.save();
-        return res.redirect('/');
     } else {
         console.log('you must be logged in from newTask');
     }
-    res.redirect('/');
+    return res.redirect('/');
 }
 
 module.exports.deleteTask = async (req, res) => {

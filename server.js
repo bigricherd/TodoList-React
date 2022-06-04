@@ -45,12 +45,9 @@ const homeUrl = process.env.HOMEPAGE_URL || 'http://localhost:3000';
 const whitelist = ['http://localhost:3000', 'http://192.168.0.101:3000', 'http://localhost:5000', 'http://127.0.0.1:8080', homeUrl];
 const corsConfig = {
     origin: function (origin, callback) {
-        console.log('**Origin of request: ' + origin);
         if (whitelist.indexOf(origin) !== -1 || !origin) {
-            console.log('Origin acceptable');
             callback(null, true);
         } else {
-            console.log('Origin rejected');
             callback(new Error('Not allowed by CORS'));
         }
     },
