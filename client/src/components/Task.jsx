@@ -9,7 +9,7 @@ function Task(props) {
     editing ? editButtonText = "Cancel Edit" : editButtonText = "Edit";
 
     let editButton =
-        <button className="btn btn-primary d-inline mx-1" onClick={() => setEditing(!editing)}>
+        <button className="btn btn-primary d-inline ms-1" onClick={() => setEditing(!editing)}>
             {editButtonText}
         </button>;
 

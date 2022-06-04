@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Task from './Task';
+import { ThreeDots } from 'react-loading-icons';
 
 function CompletedTasks() {
     const [items, setItems] = useState([]);
@@ -38,7 +39,7 @@ function CompletedTasks() {
     return (
         <div>
             {isFetching
-                ? 'Fetching completed tasks'
+                ? <ThreeDots className='mt-4' />
                 : heading}
             {completedTasks}
         </div>

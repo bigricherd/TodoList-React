@@ -59,24 +59,27 @@ function App() {
     fetchData();
   }, [fetchData]);
 
+  const debugText = <div>
+    <p>{'« '}<strong>
+      {isFetching
+        ? 'Fetching user '
+        : message}
+    </strong>{' »'}
+    </p>
+    {process.env.NODE_ENV === 'production' ?
+      <p>
+        This is a production build.
+      </p>
+      : <p>
+        You're not on PROD.
+      </p>
+    }</div>;
+
   return (
     <Router>
       <div className="App">
         <header className="App-header">
           <Nav user={user} />
-          <p>{'« '}<strong>
-            {isFetching
-              ? 'Fetching user '
-              : message}
-          </strong>{' »'}</p>
-          {process.env.NODE_ENV === 'production' ?
-            <p>
-              This is a production build.
-            </p>
-            : <p>
-              You're not on PROD.
-            </p>
-          }
           <Routes>
             <Route exact path='/' element={<HomePage user={user} />} />
             <Route exact path='/register' element={<Register />} />

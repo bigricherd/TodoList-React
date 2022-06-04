@@ -7,8 +7,9 @@ import CompletedTasks from './CompletedTasks';
 function HomePage(props) {
 
     const [showCompleted, setShowCompleted] = useState(false);
+    const [user, setUser] = useState(props.user);
 
-    let message = <p className="pt-4"><Link to='/register' className='text-decoration-none d-inline'>Register</Link> or <Link to='/login' className='text-decoration-none d-inline'>Login</Link> first</p>;
+    let message = null;
     let newTaskForm = null;
     let pendingTasks = null;
     let completedTasks = null;
@@ -23,11 +24,13 @@ function HomePage(props) {
         toggleTasksButton =
             <div className="btn-group mb-3" role="group" aria-label="Toggle tasks button group">
                 <input type="radio" className="btn-check" name="btnradio" id="pending" checked={!showCompleted} onChange={() => setShowCompleted(false)}></input>
-                <label className="btn btn-outline-primary" htmlFor="pending">Pending</label>
+                <label className="btn btn-outline-light" htmlFor="pending">Pending</label>
 
                 <input type="radio" className="btn-check" name="btnradio" id="completed" checked={showCompleted} onChange={() => setShowCompleted(true)}></input>
-                <label className="btn btn-outline-primary" htmlFor="completed">Completed</label>
+                <label className="btn btn-outline-light" htmlFor="completed">Completed</label>
             </div>;
+    } else {
+        message = <p className="pt-4"><Link to='/register' className='text-decoration-none d-inline'>Register</Link> or <Link to='/login' className='text-decoration-none d-inline'>Login</Link> first</p>;
     }
 
     return (
