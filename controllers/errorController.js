@@ -9,7 +9,6 @@ module.exports = (err, req, res, next) => {
         return next(err);
     }
     catch (err) {
-        console.log('idk what error');
         return res
             .status(500)
             .send('An unknown error occurred.');
@@ -17,28 +16,18 @@ module.exports = (err, req, res, next) => {
 
 }
 
-// const handleDuplicateKeyError = (err, res) => {
-//     const field = Object.keys(err.keyValue);
-//     const error = `An account with that ${field} already exists.`;
-//     console.log('ran dupe key handler');
-//     return res.status(409).send({ messages: error, fields: field });
-// }
-
 const handleUserExistsError = (err, res) => {
     const error = 'That username is taken, please choose a different one.';
-    console.log('ran dupe user handler');
     return res.status(409).send({ messages: error });
 }
 
 const handleMissingUsernameError = (err, res) => {
     const error = 'Username cannot be empty';
-    console.log('ran no username handler');
     return res.status(409).send({ messages: error });
 }
 
 const handleMissingPasswordError = (err, res) => {
     const error = 'Password cannot be empty';
-    console.log('ran no password handler');
     return res.status(409).send({ messages: error });
 }
 
@@ -48,12 +37,10 @@ const handleValidationError = (err, res) => {
     let code = 400;
     if (errors.length > 1) {
         const formattedErrors = errors.join('');
-        console.log('ran validationError handler');
         return res
             .status(code)
             .send({ messages: formattedErrors, fields: fields });
     } else {
-        console.log('ran validationError handler');
         return res
             .status(code)
             .send({ messages: errors, fields: fields });

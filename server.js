@@ -1,7 +1,3 @@
-// if (process.env.NODE_ENV === 'production') {
-//     require('dotenv').config();
-// }
-
 const express = require('express');
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
@@ -10,7 +6,7 @@ const passport = require('passport');
 const path = require('path');
 const LocalStrategy = require('passport-local');
 const cors = require('cors');
-const cookieParser = require('cookie-parser');
+// const cookieParser = require('cookie-parser');
 const mongoSanitize = require('express-mongo-sanitize');
 const MongoStore = require('connect-mongo');
 const uuid = require('uuid');
@@ -42,7 +38,7 @@ app.use(mongoSanitize({
 }));
 
 const homeUrl = process.env.HOMEPAGE_URL || 'http://localhost:3000';
-const whitelist = ['http://localhost:3000', 'http://192.168.0.101:3000', 'http://localhost:5000', 'http://127.0.0.1:8080', homeUrl];
+const whitelist = [homeUrl, 'http://localhost:3000', 'http://localhost:5000'];
 const corsConfig = {
     origin: function (origin, callback) {
         if (whitelist.indexOf(origin) !== -1 || !origin) {
