@@ -21,7 +21,7 @@ router.post('/login', function (req, res, next) {
             if (loginErr) {
                 return next(loginErr);
             }
-            req.session.user = req.user; // this line works even on production, the issue is accessing it from another route
+            // req.session.user = req.user; // this line works even on production, the issue is accessing it from another route
             let redir = { redirect: "/" };
             return res.json(redir);
         });

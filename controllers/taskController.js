@@ -1,7 +1,7 @@
 const Task = require('../models/taskModel');
 
 module.exports.showPendingTasks = async (req, res) => {
-    if (req.session.user) {
+    if (req.user) {
         const todos = await Task.find({ $and: [{ completed: false }, { author: req.user._id }] });
         return res.end(JSON.stringify(todos));
     } else {
