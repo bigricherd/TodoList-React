@@ -6,7 +6,7 @@ const passport = require('passport');
 const path = require('path');
 const LocalStrategy = require('passport-local');
 const cors = require('cors');
-// const cookieParser = require('cookie-parser');
+const cookieParser = require('cookie-parser');
 const mongoSanitize = require('express-mongo-sanitize');
 const MongoStore = require('connect-mongo');
 const uuid = require('uuid');
@@ -103,7 +103,7 @@ app.use((req, res, next) => {
 app.use('/api/tasks', taskRoutes);
 app.use('/api/users', authRoutes);
 app.use(errorController);
-// app.use(cookieParser); // this must go after routes
+app.use(cookieParser); // this must go after routes
 
 app.use((err, req, res, next) => {
     if (!err.statusCode) err.statusCode = 500;
