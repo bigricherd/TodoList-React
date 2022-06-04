@@ -9,7 +9,7 @@ function Task(props) {
     editing ? editButtonText = "Cancel Edit" : editButtonText = "Edit";
 
     let editButton =
-        <button className="btn btn-primary d-inline ms-1" onClick={() => setEditing(!editing)}>
+        <button className="btn btn-light d-inline mx-1" onClick={() => setEditing(!editing)}>
             {editButtonText}
         </button>;
 
@@ -25,7 +25,7 @@ function Task(props) {
                     <label htmlFor="description" name="description" className='mb-2 fw-bold'>Edit task description</label>
                     <input type="text" className="form-control text-center" placeholder="new description" id="description" name="description" defaultValue={props.description} required />
                 </div>
-                <button className="btn btn-primary" onSubmit={handleSubmitEdit}>Save Changes</button>
+                <button className="btn btn-light" onSubmit={handleSubmitEdit}>Save Changes</button>
             </form>
         </div>;
 
@@ -38,7 +38,7 @@ function Task(props) {
 
     // If this task is completed, i.e., being shown on the Completed Tasks page, then make the "complete button" and undo complete button
     if (props.completed) {
-        toggleCompleteButton = <PostButton action={undoCompleteLink} buttonClasses={"btn-info"} text={"Move to pending"} />
+        toggleCompleteButton = <PostButton action={undoCompleteLink} buttonClasses={"btn-light"} text={"Move to pending"} />
         editButton = null;
         editForm = null;
     }
@@ -53,8 +53,8 @@ function Task(props) {
             <div className="row mt-1 mb-2">
                 <div className="col-md-8 offset-md-2 col-10 offset-1">
                     {toggleCompleteButton}
-                    {removeButton}
                     {editButton}
+                    {removeButton}
                 </div>
             </div>
             {editForm}
