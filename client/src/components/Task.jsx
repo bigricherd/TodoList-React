@@ -25,7 +25,7 @@ function Task(props) {
                     <label htmlFor="description" name="description" className='mb-2 fw-bold'>Edit task description</label>
                     <input type="text" className="form-control text-center" placeholder="new description" id="description" name="description" defaultValue={props.description} required />
                 </div>
-                <button className="btn btn-light" onSubmit={handleSubmitEdit}>Save Changes</button>
+                <button className="btn btn-dark" onSubmit={handleSubmitEdit}>Save Changes</button>
             </form>
         </div>;
 
