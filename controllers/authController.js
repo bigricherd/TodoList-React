@@ -6,7 +6,6 @@ module.exports.register = async (req, res) => {
     const registeredUser = await User.register(user, password);
     req.login(registeredUser, err => {
         if (err) return next(err);
-        // req.session.user = req.user;
         let redir = { redirect: "/" };
         return res.json(redir);
     })
@@ -27,7 +26,6 @@ module.exports.getUser = (req, res) => {
 module.exports.logout = (req, res) => {
     if (req.user) {
         req.logout();
-        // req.session.user = req.user;
     }
     return res.redirect('/');
 }

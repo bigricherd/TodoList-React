@@ -1,0 +1,1 @@
+A simple to-do list created with React running on a Node backend and using MongoDB Atlas for data storage.

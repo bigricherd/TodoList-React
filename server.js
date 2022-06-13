@@ -6,7 +6,6 @@ const passport = require('passport');
 const path = require('path');
 const LocalStrategy = require('passport-local');
 const cors = require('cors');
-const cookieParser = require('cookie-parser');
 const mongoSanitize = require('express-mongo-sanitize');
 const MongoStore = require('connect-mongo');
 const uuid = require('uuid');
@@ -73,9 +72,7 @@ const sessionConfig = {
     resave: false,
     saveUninitialized: true,
     cookie: {
-        // httpOnly: true,
-        // secure: true,
-        // sameSite: "none",
+        httpOnly: true,
         expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
         maxAge: 1000 * 60 * 60 * 24 * 7
     }
@@ -84,7 +81,7 @@ const sessionConfig = {
 if (process.env.NODE_ENV === 'production') {
     app.set('trust proxy', 1); // trust first proxy
     sessionConfig.cookie.secure = true; // serve secure cookies
-    sessionConfig.store = store;
+    sessionConfig.store = store; // use Mongo for Session storage
 }
 app.use(session(sessionConfig));
 
@@ -103,7 +100,6 @@ app.use((req, res, next) => {
 app.use('/api/tasks', taskRoutes);
 app.use('/api/users', authRoutes);
 app.use(errorController);
-// app.use(cookieParser); // this must go after routes
 
 app.use((err, req, res, next) => {
     if (!err.statusCode) err.statusCode = 500;

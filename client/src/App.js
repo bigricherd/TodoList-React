@@ -10,24 +10,6 @@ import { useState, useEffect, useCallback } from 'react';
 
 
 function App() {
-  // useEffect(() => {
-  //   getUser();
-  // }, []);
-
-  // const [user, setUser] = useState(null);
-
-  // const getUser = async () => {
-  //   fetch(`${baseUrl}/api/users/getUser`).then(res => {
-  //     console.log(res);
-  //   })
-  //   const data = await fetch(`${baseUrl}/api/users/getUser`);
-  //   const currentUser = await data.json();
-  //   console.log(currentUser);
-  //   if (user !== currentUser) {
-  //     setUser(currentUser);
-  //   }
-  // }
-
   const baseUrl = process.env.REACT_APP_HOME_URL || 'http://localhost:5000';
 
   const [message, setMessage] = useState(null);
