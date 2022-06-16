@@ -5,9 +5,12 @@ import { Link } from 'react-router-dom';
 import CompletedTasks from './CompletedTasks';
 
 function HomePage(props) {
+    console.log('home page render');
 
     const [showCompleted, setShowCompleted] = useState(false);
-    const [user, setUser] = useState(props.user);
+    const [dummy, setDummy] = useState(true);
+    console.log(`Dummy: ${dummy}`);
+    // const [user, setUser] = useState(props.user);
 
     let message = null;
     let newTaskForm = null;
@@ -17,8 +20,8 @@ function HomePage(props) {
 
     if (props.user) {
         message = <p className='display-5 fw-bold text-light'>Tasks</p>;
-        newTaskForm = <NewTaskForm />;
-        pendingTasks = <PendingTasks />;
+        newTaskForm = <NewTaskForm setValue={setDummy} value={dummy} />;
+        pendingTasks = <PendingTasks />; // I want this to re-render every time a new task is added
         completedTasks = <CompletedTasks />;
 
         toggleTasksButton =

@@ -3,9 +3,12 @@ import Task from './Task';
 import { ThreeDots } from 'react-loading-icons';
 
 function PendingTasks(props) {
+    console.log('pending tasks render');
+
     const [items, setItems] = useState([]);
     const [isFetching, setIsFetching] = useState(false);
 
+    const { setValue } = props;
     const fetchItems = async () => {
         const data = await fetch('/api/tasks/pending');
         try {
@@ -29,7 +32,7 @@ function PendingTasks(props) {
         pendingTasks =
             items.map(item => (
                 <Task description={item.description} key={item._id} id={item._id} completed={item.completed} />
-            ))
+            ));
     } else if (items && items.length === 0) {
         heading = <p className="pt-4">No outstanding tasks, what's next?</p>;
     } else {
@@ -42,6 +45,7 @@ function PendingTasks(props) {
                 ? <ThreeDots className='mt-4' />
                 : heading}
             {pendingTasks}
+            {/* <input key={items} onChange={() => { setValue(items) }}></input> */}
         </div>
     )
 }

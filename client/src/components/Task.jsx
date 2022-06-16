@@ -28,12 +28,12 @@ function Task(props) {
     const deleteLink = `/api/tasks/${props.id}?_method=DELETE`;
     const undoCompleteLink = `/api/tasks/undoComplete/${props.id}`
 
-    let toggleCompleteButton = <PostButton action={completeLink} buttonClasses={"btn-success"} text={"Complete"} />;
-    let removeButton = <PostButton action={deleteLink} buttonClasses={"btn-danger"} text={"Remove"} />
+    let toggleCompleteButton = <PostButton slug={completeLink} buttonClasses={"btn-success"} text={"Complete"} />;
+    let removeButton = <PostButton slug={deleteLink} buttonClasses={"btn-danger"} text={"Remove"} method={'DELETE'} />
 
     // If this task is completed, i.e., being shown on the Completed Tasks page, then make the "complete button" and undo complete button
     if (props.completed) {
-        toggleCompleteButton = <PostButton action={undoCompleteLink} buttonClasses={"btn-light"} text={"Move to pending"} />
+        toggleCompleteButton = <PostButton slug={undoCompleteLink} buttonClasses={"btn-light"} text={"Move to pending"} />
         editButton = null;
         editForm = null;
     }

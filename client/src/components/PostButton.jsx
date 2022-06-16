@@ -1,16 +1,20 @@
 import React from 'react';
+import useForm from '../hooks/useForm';
+import Error from './Error';
 
 function PostButton(props) {
     let formClasses = "d-inline mx-1";
     let buttonClasses = `btn ${props.buttonClasses}`;
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-    }
+    // console.log(props.slug);
+    // const { handleSubmit, error } = useForm({
+    //     slug: props.slug,
+    //     method: props.method || 'POST'
+    // });
 
     return (
-        <form action={props.action} className={formClasses} method="POST">
-            <button className={buttonClasses} onSubmit={handleSubmit}>{props.text}</button>
+        <form action={props.slug} className={formClasses} method="POST">
+            <button className={buttonClasses} >{props.text}</button>
+            {/* {error && <Error error={error.messages} />} */}
         </form>
     )
 }

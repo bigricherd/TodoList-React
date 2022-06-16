@@ -30,7 +30,7 @@ export default function useForm({ initialValues, slug, method }) {
     //send data to database
     const submitData = async (formValues) => {
         const dataObject = formValues.values;
-        const { username, password } = dataObject;
+        const { username, password, description } = dataObject;
         try {
             await axios({
                 method: 'POST',
@@ -38,6 +38,7 @@ export default function useForm({ initialValues, slug, method }) {
                 data: {
                     username: username,
                     password: password,
+                    description: description
                 },
                 headers: new Headers({ 'Content-Type': 'application/json', 'Accept': 'application/json' }),
                 withCredentials: true

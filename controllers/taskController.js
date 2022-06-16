@@ -28,7 +28,8 @@ module.exports.newTask = async (req, res) => {
     } else {
         console.log('you must be logged in from newTask');
     }
-    return res.redirect('/');
+    let redir = { redirect: null };
+    return res.json(redir);
 }
 
 module.exports.deleteTask = async (req, res) => {
