@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import useForm from '../hooks/useForm';
 
 function NewTaskForm(props) {
     console.log('new task form render')
     const [description, setDescription] = useState({});
-    const { value, setValue } = props;
-    console.log(`Value: ${value}`);
-    let { values, handleChange, handleKeyDown, handleSubmit, error } = useForm({
+
+    let { values, handleChange, handleKeyDown, handleSubmit, error, tasks } = useForm({
         initialValues: {
             description: ''
         },
@@ -17,14 +17,27 @@ function NewTaskForm(props) {
         handleSubmit(e);
         setDescription('');
         values.description = '';
-        setValue(!value); // attempting to lift state up into parent component -- HomePage with dummy state variable, in hopes of it re-rendering its children, which includes PendingTasks
-        console.log(value);
     }
 
     const customHandleChange = (e) => {
         handleChange(e);
         setDescription(e.target.value);
     }
+
+    useEffect(() => {
+        console.log(tasks);
+        console.log(Array.isArray(tasks));
+        // const t = tasks.length > 0 && tasks.substring(1, tasks.length - 1);
+        // console.log(t);
+        // const arr = t.split(',');
+        // const tasksArray = [];
+        // for (let i = 0; i < arr.length; i + 5) {
+        //     const newObject = {}
+        // }
+        // console.log(arr);
+        // console.log(Array.isArray(arr));
+        props.liftState(tasks);
+    }, [tasks]);
 
     return (
         <div className="row">

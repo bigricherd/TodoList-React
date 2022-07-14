@@ -1,29 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import Task from './Task';
-import { ThreeDots } from 'react-loading-icons';
 
 function PendingTasks(props) {
     console.log('pending tasks render');
+    console.log(props.tasks);
+    console.log(typeof (props.tasks));
+    console.log(Array.isArray(props.tasks));
 
-    const [items, setItems] = useState([]);
-    const [isFetching, setIsFetching] = useState(false);
-
-    const { setValue } = props;
-    const fetchItems = async () => {
-        const data = await fetch('/api/tasks/pending');
-        try {
-            const items = await data.json();
-            setIsFetching(false);
-            setItems(items);
-        } catch (e) {
-            setIsFetching(false);
-        }
-    }
+    const [items, setItems] = useState(props.tasks);
 
     useEffect(() => {
-        setIsFetching(true);
-        fetchItems();
-    }, []);
+        setItems(props.tasks);
+    }, [props])
 
     let heading = null;
     let pendingTasks = null;
@@ -31,7 +19,7 @@ function PendingTasks(props) {
     if (items && items.length !== 0) {
         pendingTasks =
             items.map(item => (
-                <Task description={item.description} key={item._id} id={item._id} completed={item.completed} />
+                < Task description={item.description} key={item._id} id={item._id} completed={item.completed} updatePending={props.updatePending} updateCompleted={props.updateCompleted} />
             ));
     } else if (items && items.length === 0) {
         heading = <p className="pt-4">No outstanding tasks, what's next?</p>;
@@ -41,11 +29,8 @@ function PendingTasks(props) {
 
     return (
         <div>
-            {isFetching
-                ? <ThreeDots className='mt-4' />
-                : heading}
+            {heading}
             {pendingTasks}
-            {/* <input key={items} onChange={() => { setValue(items) }}></input> */}
         </div>
     )
 }

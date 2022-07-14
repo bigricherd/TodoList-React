@@ -1,54 +1,34 @@
 import { useState } from 'react';
 import axios from 'axios';
 export default function useForm({ initialValues, slug, method }) {
-    const [values, setValues] = useState(initialValues || {});
-    const [error, setError] = useState(null);
-    const [tasks, setTasks] = useState([]);
-    //track form values
-    const handleChange = event => {
-        const value = event.target.value;
-        const name = event.target.name;
-        setValues({
-            ...values,
-            [name]: value
-        });
-    };
-    //submit form when enter key is pressed
-    const handleKeyDown = event => {
-        const enter = 13;
-        if (event.keyCode === enter) {
-            handleSubmit(event);
-        }
-    }
+    const [deleteValues, setDeleteValues] = useState(initialValues || {});
+    const [deleteError, setDeleteError] = useState(null);
+    const [tasksPostDelete, setTasksPostDelete] = useState(null);
+
     //submit form when submit button is clicked
-    const handleSubmit = event => {
+    const handleDelete = event => {
         event.preventDefault();
-        submitData({ values });
+        submitData({ deleteValues });
     };
 
     const baseUrl = process.env.REACT_APP_HOME_URL || 'http://localhost:5000';
 
     //send data to database
     const submitData = async (formValues) => {
-        const dataObject = formValues.values;
-        const { username, password, description } = dataObject;
+        const dataObject = formValues.deleteValues;
+        const { id, completed } = dataObject;
         try {
             await axios({
-                method: 'POST',
-                url: `${baseUrl}/${slug}`,
-                data: {
-                    username: username,
-                    password: password,
-                    description: description
-                },
+                method: 'DELETE',
+                url: `${baseUrl}/${slug}/${id}/${completed}`,
                 headers: new Headers({ 'Content-Type': 'application/json', 'Accept': 'application/json' }),
                 withCredentials: true
 
             }).then(res => {
                 console.log(res.data);
                 console.log(res.data.tasks)
-                setTasks(res.data.tasks);
-                setError(null);
+                setTasksPostDelete(res.data.tasks);
+                setDeleteError(null);
                 if (res.data.redirect === '/') {
                     window.location = "/"; // redirects to home
                 }
@@ -64,15 +44,13 @@ export default function useForm({ initialValues, slug, method }) {
             else if (err.response.data.redirect === '/login') {
                 window.location = "/login";
             }
-            setError(err.response.data);
+            setDeleteError(err.response.data);
         }
     };
     return {
-        handleChange,
-        handleKeyDown,
-        values,
-        handleSubmit,
-        error,
-        tasks
+        deleteValues,
+        handleDelete,
+        deleteError,
+        tasksPostDelete
     }
 }

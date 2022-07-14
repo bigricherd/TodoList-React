@@ -13,7 +13,7 @@ router.get('/completed', catchAsync(tasks.showCompletedTasks));
 router.post('/new', catchAsync(tasks.newTask));
 
 // Deleting from completed page still redirects to main tasks page -- fix this
-router.delete('/:id', catchAsync(tasks.deleteTask));
+router.delete('/:id/:completed', catchAsync(tasks.deleteTask));
 
 router.post('/complete/:id', catchAsync(tasks.completeTask));
 

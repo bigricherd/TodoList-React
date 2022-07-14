@@ -9,6 +9,7 @@ const cors = require('cors');
 const mongoSanitize = require('express-mongo-sanitize');
 const MongoStore = require('connect-mongo');
 const uuid = require('uuid');
+require('dotenv').config();
 
 const User = require('./models/userModel');
 const taskRoutes = require('./routes/taskRoutes');

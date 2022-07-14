@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import axios from 'axios';
 export default function useForm({ initialValues, slug, method }) {
-    const [values, setValues] = useState(initialValues || {});
-    const [error, setError] = useState(null);
-    const [tasks, setTasks] = useState([]);
+    const [editValues, setEditValues] = useState(initialValues || {});
+    const [editError, setEditError] = useState(null);
+    const [tasksPostEdit, setTasksPostEdit] = useState([]);
     //track form values
     const handleChange = event => {
         const value = event.target.value;
         const name = event.target.name;
-        setValues({
-            ...values,
+        setEditValues({
+            ...editValues,
             [name]: value
         });
     };
@@ -17,29 +17,27 @@ export default function useForm({ initialValues, slug, method }) {
     const handleKeyDown = event => {
         const enter = 13;
         if (event.keyCode === enter) {
-            handleSubmit(event);
+            handleEdit(event);
         }
     }
     //submit form when submit button is clicked
-    const handleSubmit = event => {
+    const handleEdit = event => {
         event.preventDefault();
-        submitData({ values });
+        submitData({ editValues });
     };
 
     const baseUrl = process.env.REACT_APP_HOME_URL || 'http://localhost:5000';
 
     //send data to database
     const submitData = async (formValues) => {
-        const dataObject = formValues.values;
-        const { username, password, description } = dataObject;
+        const dataObject = formValues.editValues;
+        const { id, description } = dataObject;
         try {
             await axios({
-                method: 'POST',
-                url: `${baseUrl}/${slug}`,
+                method: 'PATCH',
+                url: `${baseUrl}/${slug}/${id}`,
                 data: {
-                    username: username,
-                    password: password,
-                    description: description
+                    description
                 },
                 headers: new Headers({ 'Content-Type': 'application/json', 'Accept': 'application/json' }),
                 withCredentials: true
@@ -47,8 +45,8 @@ export default function useForm({ initialValues, slug, method }) {
             }).then(res => {
                 console.log(res.data);
                 console.log(res.data.tasks)
-                setTasks(res.data.tasks);
-                setError(null);
+                setTasksPostEdit(res.data.tasks);
+                setEditError(null);
                 if (res.data.redirect === '/') {
                     window.location = "/"; // redirects to home
                 }
@@ -64,15 +62,15 @@ export default function useForm({ initialValues, slug, method }) {
             else if (err.response.data.redirect === '/login') {
                 window.location = "/login";
             }
-            setError(err.response.data);
+            setEditError(err.response.data);
         }
     };
     return {
         handleChange,
         handleKeyDown,
-        values,
-        handleSubmit,
-        error,
-        tasks
+        editValues,
+        handleEdit,
+        editError,
+        tasksPostEdit
     }
 }
