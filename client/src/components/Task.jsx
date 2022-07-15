@@ -63,8 +63,6 @@ function Task(props) {
     const customHandleDelete = (e) => {
         deleteValues.id = props.id;
         deleteValues.completed = props.completed;
-        console.log(deleteValues.id);
-        console.log(deleteValues.completed)
         handleDelete(e);
     }
 
@@ -106,7 +104,7 @@ function Task(props) {
         if (completedTasksPostComplete && completedTasksPostComplete.length > 0) {
             props.updateCompleted(completedTasksPostComplete);
         }
-    }, [completedTasksPostComplete])
+    }, [completedTasksPostComplete]);
     // --- END OF COMPLETE TASK ---
 
     // --- UNDO COMPLETE TASK --- 
@@ -127,18 +125,18 @@ function Task(props) {
         if (tasksPostUndoComplete && tasksPostUndoComplete.length > 0) {
             props.updatePending(tasksPostUndoComplete);
         }
-    }, [tasksPostUndoComplete])
+    }, [tasksPostUndoComplete]);
 
     // Update completed tasks
     useEffect(() => {
         if (completedTasksPostUndoComplete && completedTasksPostUndoComplete.length >= 0) {
             props.updateCompleted(completedTasksPostUndoComplete);
         }
-    }, [completedTasksPostUndoComplete])
+    }, [completedTasksPostUndoComplete]);
     // --- END OF UNDO COMPLETE TASK ---
 
     // Setting toggleCompleteButton depending on status of Task -- completed or not
-    let toggleCompleteButton = <Button variant="success" onClick={(e) => { customHandleComplete(e) }}>Complete</Button>
+    let toggleCompleteButton = <Button variant="success" onClick={(e) => { customHandleComplete(e) }}>Complete</Button>;
 
     // If this task is completed, i.e., being shown on the Completed Tasks page, then make the "complete button" an undo complete button
     if (props.completed) {
