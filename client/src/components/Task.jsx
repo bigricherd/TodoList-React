@@ -33,12 +33,21 @@ function Task(props) {
         handleEdit(e);
     }
 
+    const customHandleKeyDown = (e) => {
+        // Close edit form and set id value if enter key is pressed
+        if (e.keyCode === 13) {
+            editValues.id = props.id;
+            setEditing(false);
+        }
+        handleKeyDown(e);
+    }
+
     let editForm =
         <div className="col-md-8 offset-md-2  col-10 offset-1">
             <form>
                 <div className="mb-3">
                     <label htmlFor="description" name="description" className='mb-2 fw-bold'>Edit task description</label>
-                    <input type="text" className="form-control text-center" placeholder="new description" id="description" name="description" defaultValue={props.description} onChange={handleChange} onKeyDown={handleKeyDown} required />
+                    <input type="text" className="form-control text-center" placeholder="new description" id="description" name="description" defaultValue={props.description} onChange={handleChange} onKeyDown={customHandleKeyDown} required />
                 </div>
                 <button className="btn btn-light" onClick={(e) => { customHandleEdit(e) }}>Save Changes</button>
             </form>

@@ -24,6 +24,15 @@ function NewTaskForm(props) {
         setDescription(e.target.value);
     }
 
+    const customHandleKeyDown = (e) => {
+        handleKeyDown(e);
+        // Reset description field if enter key is pressed
+        if (e.keyCode === 13) {
+            setDescription('');
+            values.description = '';
+        }
+    }
+
     useEffect(() => {
         console.log(tasks);
         console.log(Array.isArray(tasks));
@@ -45,7 +54,7 @@ function NewTaskForm(props) {
                 <form action="#" method="POST" onSubmit={customHandleSubmit}>
                     <div className="mb-3">
                         <label htmlFor="description" name="description" className='mb-2 display-5 fw-bold text-light'>Add a Task</label>
-                        <input type="text" className="form-control text-center" placeholder="description" id="description" name="description" value={values.description} onChange={customHandleChange} onKeyDown={handleKeyDown} required />
+                        <input type="text" className="form-control text-center" placeholder="description" id="description" name="description" value={values.description} onChange={customHandleChange} onKeyDown={customHandleKeyDown} required />
                     </div>
                     <button className="btn btn-light">Add</button>
                 </form>
