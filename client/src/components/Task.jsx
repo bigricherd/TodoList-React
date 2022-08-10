@@ -34,7 +34,6 @@ function Task(props) {
     }
 
     const customHandleKeyDown = (e) => {
-        // Close edit form and set id value if enter key is pressed
         if (e.keyCode === 13) {
             editValues.id = props.id;
             setEditing(false);
@@ -80,8 +79,6 @@ function Task(props) {
     // Update completed or pending tasks, depending on the status of the deleted task
     useEffect(() => {
         if (tasksPostDelete && tasksPostDelete.length >= 0) {
-            console.log(tasksPostDelete);
-            console.log(deleteValues.completed);
             deleteValues.completed === true ? props.updateCompleted(tasksPostDelete) : props.updatePending(tasksPostDelete);
         }
     }, [tasksPostDelete])
@@ -147,7 +144,7 @@ function Task(props) {
     // Setting toggleCompleteButton depending on status of Task -- completed or not
     let toggleCompleteButton = <Button variant="success" onClick={(e) => { customHandleComplete(e) }}>Complete</Button>;
 
-    // If this task is completed, i.e., being shown on the Completed Tasks page, then make the "complete button" an undo complete button
+    // If this task is completed, i.e., being shown on the Completed Tasks page, then make the "complete" button an "undo complete" button
     if (props.completed) {
         toggleCompleteButton = <Button className="me-1" variant="light" onClick={(e) => { customHandleUndoComplete(e) }}>Move to pending</Button>
         editButton = null;

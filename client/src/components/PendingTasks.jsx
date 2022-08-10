@@ -2,11 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Task from './Task';
 
 function PendingTasks(props) {
-    console.log('pending tasks render');
-    console.log(props.tasks);
-    console.log(typeof (props.tasks));
-    console.log(Array.isArray(props.tasks));
-
     const [items, setItems] = useState(props.tasks);
 
     useEffect(() => {
@@ -16,6 +11,7 @@ function PendingTasks(props) {
     let heading = null;
     let pendingTasks = null;
 
+    // Set pendingTasks and heading conditionally, depending on the size of items
     if (items && items.length !== 0) {
         pendingTasks =
             items.map(item => (
