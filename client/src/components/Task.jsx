@@ -33,12 +33,20 @@ function Task(props) {
         handleEdit(e);
     }
 
+    const customHandleKeyDown = (e) => {
+        if (e.keyCode === 13) {
+            editValues.id = props.id;
+            setEditing(false);
+        }
+        handleKeyDown(e);
+    }
+
     let editForm =
         <div className="col-md-8 offset-md-2  col-10 offset-1">
             <form>
                 <div className="mb-3">
                     <label htmlFor="description" name="description" className='mb-2 fw-bold'>Edit task description</label>
-                    <input type="text" className="form-control text-center" placeholder="new description" id="description" name="description" defaultValue={props.description} onChange={handleChange} onKeyDown={handleKeyDown} required />
+                    <input type="text" className="form-control text-center" placeholder="new description" id="description" name="description" defaultValue={props.description} onChange={handleChange} onKeyDown={customHandleKeyDown} required />
                 </div>
                 <button className="btn btn-light" onClick={(e) => { customHandleEdit(e) }}>Save Changes</button>
             </form>
@@ -63,8 +71,6 @@ function Task(props) {
     const customHandleDelete = (e) => {
         deleteValues.id = props.id;
         deleteValues.completed = props.completed;
-        console.log(deleteValues.id);
-        console.log(deleteValues.completed)
         handleDelete(e);
     }
 
@@ -73,8 +79,6 @@ function Task(props) {
     // Update completed or pending tasks, depending on the status of the deleted task
     useEffect(() => {
         if (tasksPostDelete && tasksPostDelete.length >= 0) {
-            console.log(tasksPostDelete);
-            console.log(deleteValues.completed);
             deleteValues.completed === true ? props.updateCompleted(tasksPostDelete) : props.updatePending(tasksPostDelete);
         }
     }, [tasksPostDelete])
@@ -140,7 +144,7 @@ function Task(props) {
     // Setting toggleCompleteButton depending on status of Task -- completed or not
     let toggleCompleteButton = <Button variant="success" onClick={(e) => { customHandleComplete(e) }}>Complete</Button>
 
-    // If this task is completed, i.e., being shown on the Completed Tasks page, then make the "complete button" an undo complete button
+    // If this task is completed, i.e., being shown on the Completed Tasks page, then make the "complete" button an "undo complete" button
     if (props.completed) {
         toggleCompleteButton = <Button className="me-1" variant="light" onClick={(e) => { customHandleUndoComplete(e) }}>Move to pending</Button>
         editButton = null;
