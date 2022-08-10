@@ -37,14 +37,14 @@ app.use(mongoSanitize({
     replaceWith: '_'
 }));
 
-const homeUrl = process.env.HOMEPAGE_URL || 'http://localhost:3000';
-const whitelist = [homeUrl, 'http://localhost:3000', 'http://localhost:5000'];
+const homeUrl = process.env.HOMEPAGE_URL || 'http://localhost:3000/';
+const whitelist = [homeUrl, 'http://localhost:3000', 'http://localhost:5000/'];
 const corsConfig = {
     origin: function (origin, callback) {
         if (whitelist.indexOf(origin) !== -1 || !origin) {
             callback(null, true);
         } else {
-            callback(new Error('Not allowed by CORS'));
+            callback(new Error(`Not allowed by CORS, origin was ${origin}`));
         }
     },
     credentials: true
