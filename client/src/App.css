@@ -20,4 +20,26 @@ nav.sticky-top {
 
 form.nav-item>button {
   color: rgba(0, 0, 0, .55);
+  font-weight: normal;
+  margin-bottom: 0;
+}
+
+#registerLink,
+#loginLink {
+  color: rgba(0, 0, 0, .55);
+  font-weight: inherit;
+  margin-top: 0.31rem;
+  margin-bottom: 0.31rem;
+}
+
+#tasksLink {
+  color: rgba(0, 0, 0, .55);
+  font-weight: inherit;
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+#logoutForm {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
 }

@@ -1,19 +1,19 @@
 import { Link } from 'react-router-dom';
 
 function Nav(props) {
-    let navLinkClasses = 'nav-item nav-link';
+    let navLinkClasses = 'nav-item nav-link h4';
 
     // If there is no user logged in, populate navbar contents with Register and Login links
     let navbarNav = <div className="navbar-nav ms-auto">
-        <Link to='/register' className={navLinkClasses}>Register</Link>
-        <Link to='/login' className={navLinkClasses}>Login</Link>
+        <Link to='/register' className={navLinkClasses} id="registerLink">Register</Link>
+        <Link to='/login' className={navLinkClasses} id="loginLink">Login</Link>
     </div>;
 
     // If a user is logged in, logout button in navbar contents
     if (props.user) {
         navbarNav = <div className="navbar-nav ms-auto">
-            <Link to='/' className={navLinkClasses}>Tasks</Link>
-            <form action='/api/users/logout' className={navLinkClasses} method='POST'><button className="border-0 bg-light">Logout | <span className="text-success">{props.user.username}</span></button></form>
+            <Link to='/' className={navLinkClasses} id="tasksLink">Tasks</Link>
+            <form action='/api/users/logout' className={navLinkClasses} id="logoutForm" method='POST'><button className="border-0 bg-light h4">Logout | <span className="text-success">{props.user.username}</span></button></form>
         </div>
     }
 
