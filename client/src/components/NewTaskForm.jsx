@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
-import useForm from '../hooks/useForm';
+import addTask from '../hooks/addTask';
 
 function NewTaskForm(props) {
-    console.log('new task form render')
     const [description, setDescription] = useState({});
 
-    let { values, handleChange, handleKeyDown, handleSubmit, error, tasks } = useForm({
+    let { values, handleChange, handleKeyDown, handleSubmit, error, tasks } = addTask({
         initialValues: {
             description: ''
-        },
-        slug: 'api/tasks/new'
+        }
     });
 
     // Customized handle submit function to reset description field every time a task is added
