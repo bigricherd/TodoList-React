@@ -8,7 +8,6 @@ import NotFound from './components/NotFound';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useState, useEffect, useCallback } from 'react';
 
-
 function App() {
   const baseUrl = process.env.REACT_APP_HOME_URL || 'http://localhost:5000';
 

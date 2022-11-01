@@ -75,7 +75,7 @@ function TasksContainer(props) {
 
     return (
 
-        <div>
+        <div className="pt-lg-1">
             {newTaskForm}
             <div className="col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-xxl-4 offset-xxl-4 col-10 offset-1">
                 {heading}
