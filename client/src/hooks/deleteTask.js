@@ -21,7 +21,6 @@ export default function useForm({ initialValues, slug, method }) {
             await axios({
                 method: 'DELETE',
                 url: `${baseUrl}/${slug}/${id}/${completed}`,
-                headers: new Headers({ 'Content-Type': 'application/json', 'Accept': 'application/json' }),
                 withCredentials: true
 
             }).then(res => {
