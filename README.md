@@ -1,5 +1,5 @@
 <h2> Overview </h2>
-A simple to-do list web app created with React running on a Node server connected to a MongoDB Atlas database. </br></br>
+A simple to-do list web app created with React running on a Node server connected to a MongoDB Atlas database. Authentication implemented with Passport and styled with Bootstrap. </br></br>
 
 Developed and maintained by Chino Rodriguez.
 
