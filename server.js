@@ -38,7 +38,7 @@ app.use(mongoSanitize({
 }));
 
 const homeUrl = process.env.REACT_APP_HOME_URL || 'http://localhost:3000';
-const whitelist = [homeUrl, 'http://localhost:3000', 'http://localhost:5000/'];
+const whitelist = [homeUrl, process.env.REACT_APP_HOME_URL_SECURE, 'http://localhost:3000', 'http://localhost:5000/'];
 const corsConfig = {
     origin: function (origin, callback) {
         if (whitelist.indexOf(origin) !== -1 || !origin) {
