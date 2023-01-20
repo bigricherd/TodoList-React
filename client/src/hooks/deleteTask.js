@@ -20,7 +20,7 @@ export default function useForm({ initialValues, slug, method }) {
         try {
             await axios({
                 method: 'DELETE',
-                url: `${slug}/${id}/${completed}`,
+                url: `/${slug}/${id}/${completed}`,
                 withCredentials: true
 
             }).then(res => {

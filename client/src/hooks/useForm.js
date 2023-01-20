@@ -38,7 +38,7 @@ export default function useForm({ initialValues, slug, method }) {
         try {
             await axios({
                 method: 'POST',
-                url: `${slug}`,
+                url: `/${slug}`,
                 data: {
                     username: username,
                     password: password,

@@ -35,7 +35,7 @@ export default function useForm({ initialValues, slug, method }) {
         try {
             await axios({
                 method: 'PATCH',
-                url: `${slug}/${id}`,
+                url: `/${slug}/${id}`,
                 data: {
                     description
                 },

@@ -38,7 +38,7 @@ export default function useForm({ initialValues }) {
         try {
             await axios({
                 method: 'POST',
-                url: `${baseUrl}/api/tasks/new`,
+                url: `/api/tasks/new`,
                 data: {
                     description: description
                 },

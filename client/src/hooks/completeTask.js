@@ -21,7 +21,7 @@ export default function useForm({ initialValues, slug, method }) {
         try {
             await axios({
                 method: 'POST',
-                url: `${slug}/${id}`,
+                url: `/${slug}/${id}`,
                 headers: new Headers({ 'Content-Type': 'application/json', 'Accept': 'application/json' }),
                 withCredentials: true
 
