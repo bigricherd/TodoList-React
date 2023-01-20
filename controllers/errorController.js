@@ -1,7 +1,5 @@
 module.exports = (err, req, res, next) => {
     try {
-        console.log('HIT ERROR MIDDLEWARE');
-        console.log(err.name, err.code);
         if (err.name === 'UserExistsError') return err = handleUserExistsError(err, res);
         if (err.name === 'MissingUsernameError') return err = handleMissingUsernameError(err, res);
         if (err.name === 'MissingPasswordError') return err = handleMissingPasswordError(err, res);

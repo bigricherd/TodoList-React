@@ -25,9 +25,9 @@ mongoose.connect(dbUrl, {
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error'));
-db.once('open', () => {
-    console.log('Database connected');
-})
+// db.once('open', () => {
+//     console.log('Database connected');
+// })
 
 const app = express();
 app.use(express.urlencoded({ extended: true }));
@@ -61,9 +61,9 @@ const store = MongoStore.create({
     }
 });
 
-store.on('error', function (e) {
-    console.log('SESSION STORE ERROR', e);
-})
+// store.on('error', function (e) {
+//     console.log('SESSION STORE ERROR', e);
+// })
 
 const sessionConfig = {
     id: function (req) {
@@ -105,8 +105,6 @@ app.use(errorController);
 app.use((err, req, res, next) => {
     if (!err.statusCode) err.statusCode = 500;
     if (!err.message) err.message = 'Something went wrong';
-    console.log('you hit the catch-all error middleware');
-    console.log(err.statusCode, err.message)
     return res.status(err.statusCode).send({ messages: err.message });
 })
 
@@ -120,5 +118,5 @@ if (process.env.NODE_ENV === "production") {
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
+    //console.log(`Server running on port ${port}`);
 })

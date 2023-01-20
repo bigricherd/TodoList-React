@@ -29,8 +29,6 @@ export default function useForm({ initialValues, slug, method }) {
         submitData({ values });
     };
 
-    const baseUrl = process.env.REACT_APP_HOME_URL || 'http://localhost:5000';
-
     //send data to database
     const submitData = async (formValues) => {
         const dataObject = formValues.values;

@@ -12,8 +12,6 @@ export default function useForm({ initialValues, slug, method }) {
         submitData({ completeValues });
     };
 
-    const baseUrl = process.env.REACT_APP_HOME_URL || 'http://localhost:5000';
-
     //send data to database
     const submitData = async (formValues) => {
         const dataObject = formValues.completeValues;
@@ -26,7 +24,6 @@ export default function useForm({ initialValues, slug, method }) {
                 withCredentials: true
 
             }).then(res => {
-                console.log(res.data);
                 setTasksPostComplete(res.data.pendingTasks);
                 setCompletedTasksPostComplete(res.data.completedTasks);
                 setCompleteError(null);
@@ -38,7 +35,6 @@ export default function useForm({ initialValues, slug, method }) {
                 }
             })
         } catch (err) {
-            console.log(err);
             if (err.response.data.redirect === '/') {
                 window.location = "/"; // redirects to home
             }

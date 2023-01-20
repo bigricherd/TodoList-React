@@ -9,8 +9,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useState, useEffect, useCallback } from 'react';
 
 function App() {
-  const baseUrl = process.env.REACT_APP_HOME_URL || 'http://localhost:5000';
-
   const [message, setMessage] = useState(null);
   const [user, setUser] = useState(null);
   const [isFetching, setIsFetching] = useState(false);

@@ -24,8 +24,6 @@ export default function useForm({ initialValues, slug, method }) {
                 withCredentials: true
 
             }).then(res => {
-                console.log(res.data);
-                console.log(res.data.tasks)
                 setTasksPostDelete(res.data.tasks);
                 setDeleteError(null);
                 if (res.data.redirect === '/') {
@@ -36,7 +34,6 @@ export default function useForm({ initialValues, slug, method }) {
                 }
             })
         } catch (err) {
-            console.log(err);
             if (err.response.data.redirect === '/') {
                 window.location = "/"; // redirects to home
             }
