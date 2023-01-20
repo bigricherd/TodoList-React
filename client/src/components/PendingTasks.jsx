@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Task from './Task';
 
 function PendingTasks(props) {
@@ -11,7 +11,7 @@ function PendingTasks(props) {
     let heading = null;
     let pendingTasks = null;
 
-    // Set pendingTasks and heading conditionally, depending on the size of items
+    // Set pendingTasks and heading conditionally, depending on if there are any tasks
     if (items && items.length !== 0) {
         pendingTasks =
             items.map(item => (

@@ -1,5 +1,3 @@
-import React from 'react';
-
 function PostButton(props) {
     let formClasses = "d-inline mx-1";
     let buttonClasses = `btn ${props.buttonClasses}`;

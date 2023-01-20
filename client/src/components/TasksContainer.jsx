@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import PendingTasks from './PendingTasks'
 import CompletedTasks from './CompletedTasks';
 import NewTaskForm from './NewTaskForm';
@@ -46,7 +46,7 @@ function TasksContainer(props) {
     if (props.user) {
         heading = <p className='display-5 fw-bold text-light'>Tasks</p>;
         newTaskForm = <NewTaskForm liftState={setPendingTasks} />;
-        pendingTasksBlock = <PendingTasks tasks={pendingTasks} updatePending={setPendingTasks} updateCompleted={setCompletedTasks} />; // I want this to re-render every time a new task is added
+        pendingTasksBlock = <PendingTasks tasks={pendingTasks} updatePending={setPendingTasks} updateCompleted={setCompletedTasks} />;
         completedTasksBlock = <CompletedTasks tasks={completedTasks} updateCompleted={setCompletedTasks} updatePending={setPendingTasks} />;
 
         // Radio button group that allows user to toggle between pending and completed tasks

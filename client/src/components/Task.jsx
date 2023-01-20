@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import deleteTask from '../hooks/deleteTask';
 import editTask from '../hooks/editTask';
 import completeTask from '../hooks/completeTask';
 import undoCompleteTask from '../hooks/undoCompleteTask';
-import { useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 
 function Task(props) {

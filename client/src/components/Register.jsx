@@ -1,10 +1,9 @@
-import React from 'react';
-import useForm from '../hooks/useForm';
+import auth from '../hooks/auth';
 import Error from './Error';
 
 
 function Register() {
-    const { values, handleChange, handleKeyDown, handleSubmit, error } = useForm({
+    const { values, handleChange, handleKeyDown, handleSubmit, error } = auth({
         initialValues: {
             username: '',
             password: '',
