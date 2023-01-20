@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import PendingTasks from './PendingTasks'
 import CompletedTasks from './CompletedTasks';
 import NewTaskForm from './NewTaskForm';
-import ThreeDots from 'react-loading-icons';
+import { ThreeDots } from 'react-loading-icons';
 
 function TasksContainer(props) {
     const [isFetching, setIsFetching] = useState(false);
