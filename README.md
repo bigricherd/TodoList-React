@@ -3,7 +3,7 @@ A simple to-do list web app created with React running on a Node server connecte
 
 Developed and maintained by Chino Rodriguez.
 
-Try it out <a href="https://simple-todos-react.herokuapp.com/">here</a>.
+Try it out <a href="https://mern-to-dos.uc.r.appspot.com/">here</a>.
 
 <h2> Preview </h2>
 
