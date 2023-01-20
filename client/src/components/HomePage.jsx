@@ -6,12 +6,21 @@ function HomePage(props) {
     let message = null;
 
     if (!props.user) {
-        message = <p className="pt-3 pt-lg-5" id="authPrompt"><Link to='/register' className='text-decoration-none d-inline'>Register</Link> or <Link to='/login' className='text-decoration-none d-inline'>Login</Link> first</p>;
-    }
-
-    return (
+        return (
+            <div className="row pt-3 pt-lg-4">
+        <p className="pt-3 pt-lg-5" id="authPrompt">
+            <Link to='/register' className='text-decoration-none d-inline'>
+                Register
+            </Link>
+            or
+            <Link to='/login' className='text-decoration-none d-inline'>
+                Login
+            </Link>
+            first
+        </p>
+        </div>)
+    } else return (
         <div className="row pt-3 pt-lg-4">
-            {message}
             <TasksContainer user={props.user} />
         </div>
     )
