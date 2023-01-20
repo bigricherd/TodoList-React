@@ -3,8 +3,6 @@ import TasksContainer from './TasksContainer';
 
 function HomePage(props) {
 
-    let message = null;
-
     if (!props.user) {
         return (
             <div className="row pt-3 pt-lg-4">
