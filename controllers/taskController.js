@@ -20,7 +20,7 @@ module.exports.showCompletedTasks = async (req, res) => {
 
 module.exports.newTask = async (req, res) => {
     const { description } = req.body;
-    let response = { redirect: "/", tasks: null }
+    let response = { redirect: null, tasks: null }
     if (req.user) {
         const task = new Task({ description, completed: false, author: req.user._id });
         await task.save();
@@ -31,7 +31,7 @@ module.exports.newTask = async (req, res) => {
 }
 
 module.exports.deleteTask = async (req, res) => {
-    let response = { redirect: "/", tasks: null }
+    let response = { redirect: null, tasks: null }
     if (req.user) {
         const { id, completed } = req.params;
         await Task.findByIdAndDelete(id);
@@ -43,7 +43,7 @@ module.exports.deleteTask = async (req, res) => {
 }
 
 module.exports.completeTask = async (req, res) => {
-    let response = { redirect: "/", pendingTasks: null, completedTasks: null }
+    let response = { redirect: null, pendingTasks: null, completedTasks: null }
     if (req.user) {
         const { id } = req.params;
         await Task.findByIdAndUpdate(id, { $set: { completed: true } });
@@ -69,7 +69,7 @@ module.exports.undoComplete = async (req, res) => {
 }
 
 module.exports.editTask = async (req, res) => {
-    let response = { redirect: "/", tasks: null }
+    let response = { redirect: null, tasks: null }
     if (req.user) {
         const { id } = req.params;
         const newDescription = req.body.description;
