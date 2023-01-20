@@ -43,8 +43,6 @@ export default function useForm({ initialValues, slug, method }) {
                 withCredentials: true
 
             }).then(res => {
-                console.log(res.data);
-                console.log(res.data.tasks)
                 setTasksPostEdit(res.data.tasks);
                 setEditError(null);
                 if (res.data.redirect === '/') {

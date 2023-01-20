@@ -37,7 +37,7 @@ app.use(mongoSanitize({
     replaceWith: '_'
 }));
 
-const homeUrl = process.env.HOMEPAGE_URL || 'http://localhost:3000';
+const homeUrl = process.env.REACT_APP_HOME_URL || 'http://localhost:3000';
 const whitelist = [homeUrl, 'http://localhost:3000', 'http://localhost:5000/'];
 const corsConfig = {
     origin: function (origin, callback) {
