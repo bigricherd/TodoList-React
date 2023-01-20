@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import addTask from '../hooks/addTask';
 
 function NewTaskForm(props) {
-    const [description, setDescription] = useState({});
+    //const [description, setDescription] = useState({});
 
-    let { values, handleChange, handleKeyDown, handleSubmit, error, tasks } = addTask({
+    let { values, handleChange, handleKeyDown, handleSubmit, tasks } = addTask({
         initialValues: {
             description: ''
         }
@@ -14,20 +13,20 @@ function NewTaskForm(props) {
     // Customized handle submit function to reset description field every time a task is added
     const customHandleSubmit = (e) => {
         handleSubmit(e);
-        setDescription('');
+        //setDescription('');
         values.description = '';
     }
 
     const customHandleChange = (e) => {
         handleChange(e);
-        setDescription(e.target.value);
+        //setDescription(e.target.value);
     }
 
     const customHandleKeyDown = (e) => {
         handleKeyDown(e);
         // Reset description field if enter key is pressed
         if (e.keyCode === 13) {
-            setDescription('');
+            //setDescription('');
             values.description = '';
         }
     }

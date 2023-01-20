@@ -59,7 +59,7 @@ function Task(props) {
     // --- END OF EDIT TASK ---
 
     // --- DELETE TASK --- 
-    const { deleteValues, handleDelete, deleteError, tasksPostDelete } = deleteTask({
+    const { deleteValues, handleDelete, tasksPostDelete } = deleteTask({
         initialValues: {
             id: '',
             completed: false
@@ -84,7 +84,7 @@ function Task(props) {
     // --- END OF DELETE TASK ---
 
     // --- COMPLETE TASK --- 
-    const { completeValues, handleComplete, completeError, tasksPostComplete, completedTasksPostComplete } = completeTask({
+    const { completeValues, handleComplete, tasksPostComplete, completedTasksPostComplete } = completeTask({
         initialValues: {
             id: ''
         },
@@ -113,7 +113,7 @@ function Task(props) {
     // --- END OF COMPLETE TASK ---
 
     // --- UNDO COMPLETE TASK --- 
-    const { undoCompleteValues, handleUndoComplete, undoCompleteError, tasksPostUndoComplete, completedTasksPostUndoComplete } = undoCompleteTask({
+    const { undoCompleteValues, handleUndoComplete, tasksPostUndoComplete, completedTasksPostUndoComplete } = undoCompleteTask({
         initialValues: {
             id: ''
         },
