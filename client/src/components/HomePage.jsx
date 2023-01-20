@@ -9,12 +9,7 @@ function HomePage(props) {
         <p className="pt-3 pt-lg-5" id="authPrompt">
             <Link to='/register' className='text-decoration-none d-inline'>
                 Register
-            </Link>
-            or 
-            <Link to='/login' className='text-decoration-none d-inline'>
-                Login
-            </Link>
-             first
+            </Link> or <Link to='/login' className='text-decoration-none d-inline'>Login</Link> first
         </p>
         </div>)
     } else return (
