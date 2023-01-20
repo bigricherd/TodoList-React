@@ -10,11 +10,11 @@ function HomePage(props) {
             <Link to='/register' className='text-decoration-none d-inline'>
                 Register
             </Link>
-            or
+            or 
             <Link to='/login' className='text-decoration-none d-inline'>
                 Login
             </Link>
-            first
+             first
         </p>
         </div>)
     } else return (

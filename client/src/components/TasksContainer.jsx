@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import PendingTasks from './PendingTasks'
 import CompletedTasks from './CompletedTasks';
 import NewTaskForm from './NewTaskForm';
-import { ThreeDots } from 'react-loading-icons';
 
 function TasksContainer(props) {
     const [isFetching, setIsFetching] = useState(false);
@@ -64,8 +63,6 @@ function TasksContainer(props) {
             </div>;
     }
 
-    let show = !showCompleted ? pendingTasksBlock : completedTasksBlock;
-
     // Update variable containing the PendingTasks component every time the list of pending tasks changes
     useEffect(() => {
         pendingTasksBlock = <PendingTasks tasks={pendingTasks} liftState={setPendingTasks} />;
@@ -83,7 +80,7 @@ function TasksContainer(props) {
             <div className="col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-xxl-4 offset-xxl-4 col-10 offset-1">
                 {heading}
                 {toggleTasksButton}
-                {isFetching ? show : <ThreeDots />}
+                {!showCompleted ? pendingTasksBlock : completedTasksBlock}
             </div>
         </div>
     )
