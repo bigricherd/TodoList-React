@@ -3,7 +3,7 @@ A simple to-do list web app created with React running on a Node server connecte
 
 Developed and maintained by Chino Rodriguez.
 
-Try it out <a href="https://mern-to-dos.uc.r.appspot.com/" target="_blank" rel="noopener noreferrer">here</a> with the username "test" and password "Testing123".
+Try it out <a href="https://mern-to-dos.uc.r.appspot.com/" target="_blank" rel="noopener noreferrer">here</a> with the username "test" and password "Testing123". Note that you must be on https for the application to work. Non-secure cookies will not be sent to the server.
 
 <h2> Preview </h2>
 
